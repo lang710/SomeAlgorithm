@@ -17,8 +17,12 @@ void find(int num_gas,int *get_gas,int *dis_gas,int remain,int need,int pos,int 
         need-=dis_gas[pos]-dis_gas[pos-1];
     }
     if(remain>=0){
-        if(remain>=dis_gas[pos+1]-dis_gas[pos])
-            find(num_gas,get_gas,dis_gas,remain,need,pos+1,least,result);
+        if(pos<num_gas-1)
+            if(remain>=dis_gas[pos+1]-dis_gas[pos])
+                find(num_gas,get_gas,dis_gas,remain,need,pos+1,least,result);
+        else
+            if(remain>=need)
+                find(num_gas,get_gas,dis_gas,remain,need,pos+1,least,result);
         find(num_gas,get_gas,dis_gas,remain+get_gas[pos],need,pos+1,least+1,result);
     }
 }
